@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "i can't read",
+  "version": "1.0",
+  "description": "can't read? i gotchu.",
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_icon": "icon.png"
+  },
+  "permissions": ["activeTab", "storage", "scripting", "contextMenus"],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content.js"]
+    }
+  ]
+}
