@@ -46,8 +46,12 @@ function main() {
     NodeFilter.SHOW_TEXT,
     {
         acceptNode(node) {
-            const parent = node.parentElement?.tagName;
-            if (["SCRIPT", "STYLE", "NOSCRIPT"].includes(parent)) {
+            const parent = node.parentElement;
+            if (["SCRIPT", "STYLE", "NOSCRIPT"].includes(parent?.tagName)) {
+                return NodeFilter.FILTER_REJECT;
+            }
+            // skip search bar coz it was annoying me
+            if (parent?.isContentEditable) {
                 return NodeFilter.FILTER_REJECT;
             }
             if (!node.nodeValue.trim()) {
