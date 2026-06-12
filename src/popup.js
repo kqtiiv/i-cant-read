@@ -17,12 +17,6 @@ btn.addEventListener("click", async () => {
     chrome.storage.local.set({ bionic_reading_active: newState });
     btn.innerText = newState ? "Deactivate" : "Activate";
 
-    // if new tab send message to background worker
-    chrome.runtime.sendMessage({
-      action: newState ? "enable" : "disable",
-      tabId: tab.id
-    });
-
     // inject script on activate and deactivate
     chrome.scripting.executeScript({
       target: { tabId: tab.id, allFrames: true },
