@@ -1,6 +1,5 @@
 const btn = document.getElementById("bionic_reading_btn");
 
-// Load saved state
 chrome.storage.local.get("bionic_reading_active", (result) => {
   btn.innerText = result.bionic_reading_active ? "Deactivate" : "Activate";
 });
@@ -8,6 +7,7 @@ chrome.storage.local.get("bionic_reading_active", (result) => {
 btn.addEventListener("click", async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
+  // don't try change pages if not allowed
   if (!tab.url || tab.url.startsWith("chrome://")) return;
 
   chrome.storage.local.get("bionic_reading_active", (result) => {
@@ -17,12 +17,14 @@ btn.addEventListener("click", async () => {
     chrome.storage.local.set({ bionic_reading_active: newState });
     btn.innerText = newState ? "Deactivate" : "Activate";
 
+    // if new tab send message to background worker
     chrome.runtime.sendMessage({
       action: newState ? "enable" : "disable",
       tabId: tab.id
     });
 
     if (newState) {
+      // apply bionic reading to the current page
       chrome.scripting.executeScript({
         target: { tabId: tab.id, allFrames: true },
         files: ["src/content.js"],

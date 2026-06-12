@@ -1,5 +1,7 @@
+// Tracks which tabs have bionic reading enabled
 const enabledTabs = new Set();
 
+// popup.js sends msg when br toggled
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg.action === "enable") {
     enabledTabs.add(msg.tabId);
@@ -8,6 +10,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   }
 });
 
+// update tab when a tracked tab finishes loading a new page
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.status === "complete" && enabledTabs.has(tabId)) {
     chrome.scripting.executeScript({
