@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap');
+
+body {
+  width: 230px;
+  margin: 0;
+  padding: 20px 18px 16px;
+  background: #fff8f0;
+  font-family: 'Fredoka', sans-serif;
+  color: #2e2a26;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
+  color: #2e2a26;
+  /* wobbly underline */
+  text-decoration: underline wavy #f4845f;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 2px;
+}
+
+button {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  width: 100%;
+  padding: 9px 0;
+  border-radius: 14px;
+  border: 2.5px solid #2e2a26;
+  background: #f4845f;
+  color: #fff;
+  box-shadow: 3px 3px 0 #2e2a26;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+button:hover {
+  background: #f26b42;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #2e2a26;
+}
+
+button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #2e2a26;
+}
+
+p {
+  font-size: 12px;
+  color: #9a8c82;
+}
+
+a {
+  color: #f4845f;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: underline;
+}

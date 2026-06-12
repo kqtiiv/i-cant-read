@@ -1,5 +1,4 @@
-// Auto-inject content.js on every page load while bionic reading is active.
-// Uses storage (not an in-memory Set) so it survives service worker restarts.
+// Auto-inject script on every page if bionic reading is active.
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.status !== "complete") return;
   if (!tab.url || tab.url.startsWith("chrome://") || tab.url.startsWith("chrome-extension://")) return;
