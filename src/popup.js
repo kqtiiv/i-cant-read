@@ -23,12 +23,10 @@ btn.addEventListener("click", async () => {
       tabId: tab.id
     });
 
-    if (newState) {
-      // apply bionic reading to the current page
-      chrome.scripting.executeScript({
-        target: { tabId: tab.id, allFrames: true },
-        files: ["src/content.js"],
-      });
-    }
+    // inject script on activate and deactivate
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id, allFrames: true },
+      files: ["src/content.js"],
+    });
   });
 });
