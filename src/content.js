@@ -50,8 +50,8 @@ function main() {
             if (["SCRIPT", "STYLE", "NOSCRIPT"].includes(parent?.tagName)) {
                 return NodeFilter.FILTER_REJECT;
             }
-            // skip search bar coz it was annoying me
-            if (parent?.isContentEditable) {
+            // skip textarea/input
+            if (parent?.closest("textarea, input")) {
                 return NodeFilter.FILTER_REJECT;
             }
             if (!node.nodeValue.trim()) {
