@@ -1,6 +1,3 @@
-// Wraps the first half of each word in a <br-bold> tag for bionic reading styling.
-// Hyphenated words are split and each component is highlighted independently.
-// Words containing numbers are unchanged.
 function highlightText(sentenceText) {
   return sentenceText
     .split(" ")
